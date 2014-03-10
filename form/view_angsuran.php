@@ -13,9 +13,9 @@
 				if ($cri != "") {
 					$str = "where $cri = '$val'";
 				}
-				$rr = "select distinct(mtr.merek)  from m_angsuran ang INNER JOIN m_motor mtr on mtr.kode_motor = ang.kode_motor $str order by mtr.merek";
+				$rr = "select distinct(mtr.merek)  from M_ANGSURAN ang INNER JOIN M_MOTOR mtr on mtr.kode_motor = ang.kode_motor $str order by mtr.merek";
 				//echo $rr;	
-            	if (!($query = mysql_query( "select distinct(mtr.merek)  from m_angsuran ang INNER JOIN m_motor mtr on mtr.kode_motor = ang.kode_motor $str order by mtr.merek"))) die("SQL Error");
+            	if (!($query = mysql_query( "select distinct(mtr.merek)  from M_ANGSURAN ang INNER JOIN M_MOTOR mtr on mtr.kode_motor = ang.kode_motor $str order by mtr.merek"))) die("SQL Error".mysql_error());
 				while($res = mysql_fetch_array($query)) {
 					?>
                     	 <table width="100%" border="0" cellpadding="5" cellspacing="0">
@@ -25,15 +25,15 @@
                          </table>
 					<?php
 					$yy = "select 	distinct(mtr.type), mtr.harga
-						 from 		m_angsuran ang 
-						 INNER JOIN m_motor mtr on mtr.kode_motor = ang.kode_motor 
+						 from 		M_ANGSURAN ang 
+						 INNER JOIN M_MOTOR mtr on mtr.kode_motor = ang.kode_motor 
 						 $str	and mtr.merek = '$res[0]'
 						 ";
 						 //echo $yy;
 					if (!($query2 = mysql_query( 
 						"select 	distinct(mtr.type), mtr.harga
-						 from 		m_angsuran ang 
-						 INNER JOIN m_motor mtr on mtr.kode_motor = ang.kode_motor 
+						 from 		M_ANGSURAN ang 
+						 INNER JOIN M_MOTOR mtr on mtr.kode_motor = ang.kode_motor 
 						 $str		and mtr.merek = '$res[0]'
 						 "))) die("SQL Error");
 					while($res2 = mysql_fetch_array($query2)) {
@@ -61,8 +61,8 @@
 								  <?php
                                     if (!($query3 = mysql_query( 
 										"select 	* 
-										 from 		m_angsuran ang 
-										 INNER JOIN m_motor mtr on mtr.kode_motor = ang.kode_motor 
+										 from 		M_ANGSURAN ang 
+										 INNER JOIN M_MOTOR mtr on mtr.kode_motor = ang.kode_motor 
 										 where		mtr.type = '$res2[0]' "))) die("SQL Error");
                                     while($res3 = mysql_fetch_array($query3)) {
 
